@@ -1,0 +1,9 @@
+{
+	"files.exclude": {
+		"D:/UnrealProjects/BullCowGame/.git": true,
+		"D:/UnrealProjects/BullCowGame/.vscode": true,
+		"D:/UnrealProjects/BullCowGame/Content": true,
+		"D:/UnrealProjects/BullCowGame/Intermediate": true,
+		"D:/UnrealProjects/BullCowGame/Saved": true
+	}
+}
