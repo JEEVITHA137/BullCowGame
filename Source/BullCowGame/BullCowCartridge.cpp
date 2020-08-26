@@ -1,51 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 #include "BullCowCartridge.h"
 #include "HiddenWordList.h"
+#include "BullCowGameGameModeBase.h"
 
-void UBullCowCartridge::BeginPlay() // When the game starts
+void UBullCowCartridge::BeginPlay()
 {
-    //Welcoming the player
-    Super::BeginPlay();
    
+    Super::BeginPlay();
+
+    GameMode = GetWorld()->GetAuthGameMode<ABullCowGameGameModeBase>();
+    PrintLine(TEXT("Welcome to BullCowGame!..."));
+    PrintLine(TEXT("Press Tab to start the game"));
     Isogram = GetValidWords(Words);
-    SetGameVariables();
-    GameInstruction();
     SetUpGame();
 }
 
-void UBullCowCartridge::OnInput(const FString& PlayerInput) // When the player hits enter
+void UBullCowCartridge::OnInput(const FString& PlayerInput) 
 {
-    if(bGameOver)
-    {
-        ClearScreen();
-        GameInstruction();
-        SetUpGame();
-    }
-    else
-    {
-        ProcessGuess(PlayerInput);
-    }
-}
-
-void UBullCowCartridge::SetGameVariables()
-{
-    bGameOver=false;
-}
-
-void UBullCowCartridge::GameInstruction()
-{
-    if(bGameOver)
-    {
-        PrintLine(TEXT("Welcome to BullCowGame!..."));
-    }
-    else
-    {
-        PrintLine(TEXT("Welcome to BullCowGame!..."));
-        PrintLine(TEXT("Guess the Isogram(No repeated letters)."));
-        PrintLine(TEXT("BullCount:Letters with Correct Position."));
-        PrintLine(TEXT("CowCount:Letters with Incorrect Position"));
-        PrintLine(TEXT("Note:BullCount and CowCount are Zero(No\nletter matching)."));
-    }
+    ProcessGuess(PlayerInput);
 }
 
 void UBullCowCartridge::SetUpGame(){
@@ -58,12 +30,6 @@ void UBullCowCartridge::SetUpGame(){
     PrintLine(TEXT("Guessing Word Length:%i"),Hiddenword.Len());
     PrintLine(TEXT("First Letter:%c"),Hiddenword[0]);
     PrintLine(TEXT("Lives:%i"),Lives);
-    if(!bGameOver)
-    {
-        PrintLine(TEXT("Press Tab to start the game"));
-    }
-   
-    bGameOver=false;
 }
 
 void UBullCowCartridge::GuessNext()
@@ -72,18 +38,13 @@ void UBullCowCartridge::GuessNext()
     Lives+=5;
     PlayerScore+=15;
 
+    GameMode->ScoreValue();
+
     PrintLine(TEXT("Correct!...Well Done..."));
     PrintLine(TEXT("Your Score:%i"),PlayerScore);
     PrintLine(TEXT("Guess again....Word Length:%i"),Hiddenword.Len());
     PrintLine(TEXT("First Letter:%c"),Hiddenword[0]);
     PrintLine(TEXT("Lives:%i"),Lives);
-}
-
-void UBullCowCartridge::EndGame(){
-    
-    bGameOver=true;
-
-    PrintLine("\nPress Enter to Play again!...");
 }
 
 void UBullCowCartridge::ProcessGuess(const FString& Guess){
@@ -127,19 +88,12 @@ void UBullCowCartridge::ProcessGuess(const FString& Guess){
     }
 
     BullCowCount Score = GetBullCow(Guess);
-
+    GameMode->HealthValue() ;
     PrintLine(TEXT("You Lost the lives"));
     PrintLine(TEXT("Guess Again!..."));
     PrintLine(TEXT("Lives:%i"),--Lives);
     PrintLine(TEXT("You have %i Bulls and %i Cows"),Score.Bulls,Score.Cows);
 
-    if(Lives<=0)
-    {
-        ClearScreen();
-        PrintLine(TEXT("HiddenWord is %s"),*Hiddenword);
-        PrintLine(TEXT("You have no more lives left"));
-        EndGame();         
-    }
 }
 
 bool UBullCowCartridge::IsIsogram(const FString& Word)const

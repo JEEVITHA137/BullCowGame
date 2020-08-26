@@ -4,6 +4,7 @@
             "name": "UnrealEngine",
             "includePath": [
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source",
+                "D:\\UnrealProjects\\BullCowGame\\Source\\BullCowGame\\Private",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Intermediate\\Build\\Win64\\UE4Editor\\Inc\\Engine",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\Runtime",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\Runtime\\Engine\\Classes",
@@ -516,7 +517,9 @@
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Intermediate\\Build\\Win64\\UE4Editor\\Inc\\ClothingSystemRuntimeInterface",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\Runtime\\ClothingSystemRuntimeInterface\\Public",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\Runtime\\ClothingSystemRuntimeInterface",
+                "D:\\UnrealProjects\\BullCowGame\\Intermediate\\Build\\Win64\\UE4Editor\\Inc\\BullCowGame",
                 "D:\\UnrealProjects\\BullCowGame\\Source",
+                "D:\\UnrealProjects\\BullCowGame\\Source\\BullCowGame\\Public",
                 "D:\\UnrealProjects\\BullCowGame\\Source\\BullCowGame",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\ThirdParty\\PhysX3\\PxShared\\include",
                 "C:\\Program Files\\Epic Games\\UE_4.25\\Engine\\Source\\ThirdParty\\PhysX3\\PxShared\\include\\cudamanager",

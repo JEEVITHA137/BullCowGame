@@ -24,6 +24,9 @@ protected:
 		PrintLine(FString::Printf(Fmt, Args...));
 	}
 	void ClearScreen() const;
+
+	void DeactivateTerminal() const;
+	
 private:
 	class UTerminal* Terminal;
 };

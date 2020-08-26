@@ -26,3 +26,8 @@ void UCartridge::ClearScreen() const
 {
 	Terminal->ClearScreen();
 }
+
+void UCartridge::DeactivateTerminal() const
+{
+	Terminal->DeactivateTerminal();
+}
